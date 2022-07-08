@@ -1,0 +1,192 @@
+db.ALUMNOS.insertMany([
+    {Nombre: "Tomás",
+    Apellidos: "Rojas Orellana",
+    Fonos: [56708933],
+    Direccion: {Calle: "Los Ulmos", NroCasa: 7749, Ciudad: "Coronel"},
+    Carrera: "Técnico en Construcción",
+    Edad: 18,
+    Peso: 106,
+    CiudadesVisitadas: {Año: [2015, 2022], Ciudad: ["Putaendo", "Porvenir"], Dias: [19, 16]}},
+
+    {Nombre: "Emma",
+    Apellidos: "Godoy Maldonado",
+    Fonos: [36322413],
+    Direccion: {Calle: "Central", NroCasa: 1936, Ciudad: "Paine"},
+    Carrera: "Comercio Exterior",
+    Edad: 17,
+    Estatura: 1.85,
+    CiudadesVisitadas: {Año: [2021, 2021], Ciudad: ["Renaico", "El Quisco"], Dias: [19, 15]}},
+
+    {Nombre: "Catalina",
+    Apellidos: "Cáceres Navarro",
+    Fonos: [72068246],
+    Direccion: {Calle: "Cabo de Hornos", NroCasa: 7780, Ciudad: "Limache"},
+    Carrera: "Ingenieria en Electrónica y Sistemas Inteligentes",
+    Edad: 27,
+    Estatura: 1.62,
+    CiudadesVisitadas: {Año: [2018, 2022], Ciudad: ["Chimbarongo", "Independencia"], Dias: [27, 9]}},
+
+    {Nombre: "Santiago",
+    Apellidos: "Moreno Leiva",
+    Fonos: [73913374],
+    Direccion: {Calle: "Riquelme", NroCasa: 6644, Ciudad: "Cañete"},
+    Carrera: "Contabilidad General",
+    Edad: 29,
+    Estatura: 2.01,
+    CiudadesVisitadas: {Año: [2021, 2021], Ciudad: ["Vicuña", "Nacimiento"], Dias: [21, 12]}},
+
+    {Nombre: "Antonella",
+    Apellidos: "Cortés Cardenas",
+    Fonos: [22770845],
+    Direccion: {Calle: "Miraflores", NroCasa: 9611, Ciudad: "Santiago"},
+    Carrera: "telecomunicaciones, Conectividad y Redes",
+    Edad: 38,
+    CiudadesVisitadas: {Año: [2017, 2020], Ciudad: ["Freire", "Coihueco"], Dias: [8, 19]}},
+
+    {Nombre: "Gabriel",
+    Apellidos: "Muñoz Gomez",
+    Fonos: [30643093, 99549938, 38518340],
+    Direccion: {Calle: "Caupolican", NroCasa: 5156, Ciudad: "Longaví"},
+    Carrera: "Ingenieria en Administracion de Empresas Financieras",
+    Edad: 22,
+    Peso: 64,
+    CiudadesVisitadas: {Año: [2019, 2021], Ciudad: ["La Reina", "Coyhaique"], Dias: [6, 30]}},
+
+    {Nombre: "Maria",
+    Apellidos: "Poblete Vega",
+    Fonos: [51799104, 65053786, 79236857],
+    Direccion: {Calle: "Gabriela Mistral", NroCasa: 1970, Ciudad: "Santa Juana"},
+    Carrera: "Administracion de Empresas",
+    Edad: 27,
+    Estatura: 1.53,
+    CiudadesVisitadas: {Año: [2019, 2019, 2020], Ciudad: ["San Miguel", "San Ramón", "Coelemu"], Dias: [27, 21, 14]}},
+
+    {Nombre: "Renata",
+    Apellidos: "Poblete Sanchez",
+    Fonos: [79332358],
+    Direccion: {Calle: "Libertad", NroCasa: 4708, Ciudad: "Providencia"},
+    Carrera: "Ingenieria Financiera",
+    Edad: 27,
+    CiudadesVisitadas: {Año: [2021, 2021], Ciudad: ["Renaico", "Alto Hospicio"], Dias: [25, 6]}}
+
+])
+
+
+db.PRUEBA2.insertMany(
+    [
+        {Nombre: "Alexis",
+        Apellidos: "Pinilla Barría",
+        Fonos: [933857674],
+        Direccion: {Calle: "Manuel Bulnes", NroCasa: 260, Ciudad: "Porvenir"},
+        Carrera: "Ing Informática",
+        Edad: 27,
+        Peso: 78,
+        CiudadesVisitadas: {Año: 2022, Ciudad: "Salta", Dias: 14}},
+        
+        {Nombre: "Juan",
+        Apellidos: "Bauche Ilnao",
+        Fonos: [58956223],
+        Direccion: {Calle: "John Williams", NroCasa: 788, Ciudad: "Porvenir"},
+        Carrera: "Agronomia",
+        Edad: 42,
+        Peso: 70,
+        CiudadesVisitadas: {Año: 2022, Ciudad: "Punta Arenas", Dias: 31}}
+    ]
+)
+
+
+db.ALUMNOS.find({Estatura: {$gt: 1.70}})
+
+db.ALUMNOS.find({Carrera: {$eq: "Climatización"}})
+
+
+db.ALUMNOS.find({Estatura: {$not: {Estatura: {$gt: 1.80}}}})
+
+
+db.ALUMNOS.find({Estatura: {$not: {$gt: 1.80}}})
+
+
+db.ALUMNOS.find(
+    {$and: [
+        {Edad: {$ne: 24}}, {Estatura: {$gte: 1.62}}
+    ]}
+    )
+
+db.ALUMNOS.find(
+    {$or: [
+        {Estatura: {$lt: 1.52}}, {Estatura: {$gt: 1.71}}
+    ]}
+)
+
+db.ALUMNOS.find(
+    {Carrera: {$regex: /en/i}}
+)
+
+db.ALUMNOS.find(
+    {"Direccion.Ciudad": {$not: {$regex: /l/i}}}
+)
+
+db.ALUMNOS.find(
+    {Carrera: {$regex: /^Técnico/}}
+)
+
+db.ALUMNOS.find({Edad: {$gt: 20}}).count()
+
+
+db.ALUMNOS.find(
+    {}, {_id: 0, Nombre: 1, Apellidos: 1, Edad: 1}
+).sort({Apellidos: 1})
+
+db.ALUMNOS.find(
+    {Estatura: {$gt: 0}}, {_id: 0, Nombre: 1, Apellidos: 1, Estatura: 1}
+).sort({Estatura: -1}).skip(1).limit(1)
+
+
+db.ALUMNOS.updateMany(
+    {},
+    {
+        $rename: {"Direccion" : "Ubicacion"},
+        $currentDate: {"cambio": true}
+    }
+)
+
+db.ALUMNOS.updateOne(
+    {Edad: {$lt: 20}},
+    {
+        $inc: {Edad: 1},
+        $currentDate: {"cambio":true}
+    }
+)
+
+db.ALUMNOS.updateMany(
+    {Peso: {$gt: 0}},
+    {
+        $unset: {Estatura: ""},
+        $currentDate: {cambio: true}
+    }
+)
+
+db.ALUMNOS.updateMany(
+    {Edad: {$gt: 35}},
+    {
+        $min: {Edad: 35},
+        $currentDate: {cambio: true}
+    }
+)
+
+db.ALUMNOS.remove(
+    {"Ubicacion.Ciudad": {$regex: /a$/}}, true
+)
+
+db.ALUMNOS.deleteOne(
+    {$and: [{Edad: {$lt: 25}},{Nombre: {$regex: /^J/}}]}
+)
+
+
+db.ALUMNOS.find(
+    {Fonos: {$not: {$type: 4}}}
+)
+
+db.ALUMNOS.find(
+    {Peso: {$exists: true}}
+)
